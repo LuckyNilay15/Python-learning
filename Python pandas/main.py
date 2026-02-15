@@ -25,10 +25,38 @@ shape=df.shape #shape is not a method its an attribute of pandas data frame
 #print(df.info()) # In Pandas, object is the standard data type for columns containing text or mixed values.
 
 #check null values
-print(df.isnull().sum(axis=1)) #axis=1 means row wise
-print(df.isnull().sum(axis=0)) #axis=0 means column wise
+#print(df.isnull().sum(axis=1)) #axis=1 means row wise
+#print(df.isnull().sum(axis=0)) #axis=0 means column wise
 
+description=df.describe(include="all")
+# print(description)
 
+#unique values from gender column
 
+uniquegender=df['Gender'].unique()
+# print(uniquegender)
 
+#count of each unique value
+eachuniquevalue=df['Gender'].value_counts()
+# print(eachuniquevalue)
 
+Marks=df[(df['Marks']>=90) & (df['Marks']<=100)]
+# print(Marks)
+
+#unsing between method
+
+Marks=df[df['Marks'].between(90,100)]
+# print(Marks)
+
+#Average of marks
+average=df['Marks'].mean()
+print(average)
+
+def marks(x):
+    return x/2 # use // for integer division
+
+df['Half_Marks']=df['Marks'].apply(marks)
+print(df)
+
+df['Half_Marks_lambda']=df['Marks'].apply(lambda x:x/2)
+print(df)
