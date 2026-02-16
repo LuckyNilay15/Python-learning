@@ -50,13 +50,39 @@ Marks=df[df['Marks'].between(90,100)]
 
 #Average of marks
 average=df['Marks'].mean()
-print(average)
+# print(average)
 
 def marks(x):
     return x/2 # use // for integer division
 
 df['Half_Marks']=df['Marks'].apply(marks)
-print(df)
+# print(df)
 
 df['Half_Marks_lambda']=df['Marks'].apply(lambda x:x/2)
-print(df)
+# print(df)
+
+#length of name column
+length=df['Name'].apply(len)
+# print(length)
+
+#Mapping of gender
+
+df['Male_Female']=df['Gender'].map({'M':1,'F':0})
+# print(df)
+
+# print(df)
+
+df.drop(['Half_Marks_lambda','Male_Female'],axis=1,inplace=True)
+# print(df)
+
+# print(df.columns) #name of all columns it is an attribute not a method
+# print(df.index)
+
+
+# print(df.sort_values(by='Marks'))
+# print(df)
+
+#display name and marks of female students
+
+print(df[df['Gender']=='F'][['Name','Marks']])
+print(df[df['Gender'].isin(['F'])][['Name','Marks']])
